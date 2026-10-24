@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1028663341648",
+    "project_id": "coifhairsalonmanager",
+    "storage_bucket": "coifhairsalonmanager.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1028663341648:android:06532bfa3933730e831755",
+        "android_client_info": {
+          "package_name": "com.yunidit.Klub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvAFoAcl8JZ6U747MfIDf3CvORwvcgayI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
