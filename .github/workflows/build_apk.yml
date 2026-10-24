@@ -1,0 +1,38 @@
+name: Build Flutter APK
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupération du code source
+        uses: actions/checkout@v4
+
+      - name: Configuration de Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Configuration de Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.x'
+          channel: 'stable'
+
+      - name: Installation des dépendances
+        run: flutter pub get
+
+      - name: Compilation de l'APK Android
+        run: flutter build apk --release --no-tree-shake-icons
+
+      - name: Sauvegarde de l'APK généré
+        uses: actions/upload-artifact@v4
+        with:
+          name: KlubApp-release
+          path: build/app/outputs/flutter-apk/app-release.apk
