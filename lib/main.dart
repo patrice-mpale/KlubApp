@@ -12,9 +12,10 @@ void main() async {
 // DONNEES EN MEMOIRE (STATE)
 // ============================
 class SalonData{
+  static String salonId = "";
   static String nomSalon = "SALON XXXXXX";
   static String commune = "";
-  static String avanue = "";
+  static String avenue = "";
   static String telephone = "";
 
   static List<Map<String, dynamic>> coiffeurs = [
@@ -23,7 +24,7 @@ class SalonData{
     {'nom': 'Coiffeur C', 'clients': 0, 'icone' : Icons.content_cut},
     {'nom': 'Coiffeur D', 'clients': 0, 'icone' : Icons.face},
     {'nom': 'Coiffeur E', 'clients': 0, 'icone' : Icons.cut},
-    {'nom': 'Coiffeur F', 'clients': 0, 'icone' : Icons.brush,}
+    {'nom': 'Coiffeur F', 'clients': 0, 'icone' : Icons.brush},
     {'nom': 'Coiffeur G', 'clients': 0, 'icone' : Icons.air},
     {'nom': 'Coiffeur H', 'clients': 0, 'icone' : Icons.face},
   ];
@@ -45,7 +46,7 @@ final GoRouter _router = GoRouter(
     // 1. Écran de bienvenue / Login Part 1
     GoRoute(
       path: '/',
-      builder: (context, state) => const Loginscreen(),
+      builder: (context, state) => const LoginScreen(),
     ),
     // 3. Tableau de bord
     GoRoute(
@@ -95,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _nomSalonController = TextEditingController();
   final TextEditingController _communeController = TextEditingController();
   final TextEditingController _telephoneController = TextEditingController();
-  final TextEditingController _avenueController = TextEditingController
+  final TextEditingController _avenueController = TextEditingController();
   
   bool _isLoading = false;
 
@@ -193,13 +194,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
               // Commune
               TextFormField(
-                controller: _adresseController,
+                controller: _communeController,
                 decoration: const InputDecoration(
                   labelText: 'Adresse ou Commune (ex: Gombe)',
                   border: OutlineInputBorder(),
                 ),
                 validator: (value) => value!.isEmpty ? 'Entrez l\'adresse' : null,
-
+              ),
+              const SizedBox(height: 15),           
               // Avenue
               TextFormField(
                 controller: _avenueController,
@@ -233,7 +235,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: _validerEtEntrer,
                       child: const Text('Accéder au Salon', style: TextStyle(fontSize: 18)),
                     ),
-            ],
+          ],
           ),
         ),
       ),
@@ -318,7 +320,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         );
       },
     );
-  },  
+  }  
   // Fonction d'ajout de prestation 
   void afficherDialogueAjoutClient(BuildContext context, VoidCallback onUpdate) {
     String? coiffeurSelectionne = SalonData.coiffeurs.isNotEmpty ? SalonData.coiffeurs[0]['nom'] : null;
@@ -492,7 +494,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     children: [
                       Text(
                         'DATE : $dateDuJour',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
@@ -595,7 +597,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           GestureDetector(
-                            onTap: () => _renommerCoiffeur(context, index),
+                            onTap: () => renommerCoiffeur(context, index),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
