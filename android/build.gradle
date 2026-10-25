@@ -5,7 +5,7 @@ buildscript{
         mavenCentral()
     }
     dependencies{
-        classpath 'com.google.gms:goole-service:4.4.2'
+        classpath 'com.google.gms:goole-services:4.4.2'
         classpath 'org.jetbrains.kotlin:$kotlin-gradle-plugin:1.9.22'
     }
 }
