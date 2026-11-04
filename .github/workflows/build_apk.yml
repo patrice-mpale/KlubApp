@@ -1,5 +1,5 @@
 name: Build Flutter APK
-
+ 
 on:
   push:
     branches: [ main ]
@@ -29,7 +29,7 @@ jobs:
         run: flutter pub get
 
       - name: Compilation de l'APK Android
-        run: flutter build apk --release --no-tree-shake-icons
+        run: flutter build apk --release --android-skip-build-dependency-validation
 
       - name: Sauvegarde de l'APK généré
         uses: actions/upload-artifact@v4
